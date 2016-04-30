@@ -4,7 +4,7 @@
   <meta charset = "utf-8" />
   <title> Ce o să te faci cand o să fii mare? </title>
 
-
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
   <link rel = "stylesheet" href = "css/glyphicons.css" />
   <link rel = "stylesheet" href = "css/bootstrap.css" />
   <link rel = "stylesheet" href = "css/style.css" />
@@ -18,6 +18,7 @@
   <script src = "js/angular-route.js"></script>
   <script src = "js/sortable.js"></script>
 
+
 	<script src = "js/bootstrap.js"></script>
 
 
@@ -28,18 +29,27 @@
   <header>
     <center>
       <h1> Ce o să te faci când o să fii mare? </h1>
-      <h2> - Quiz - </h2>
+      <br />
+      <p> Alege cât de mult îți place ocupația pe o scară de la 0 la 2. </p>
     </center>
   </header>
 
   <center>
-    <div ng-controller = "quizCtrl">
-      <h2> Întrebarea #{{currentItemIndex + 1}}: {{currentItem.question}} </h2>
+    <div ng-controller = "quizCtrl" id = "container">
+      <div ng-show = "!showResults">
+        <h2> #{{currentItemIndex + 1}} {{currentItem.question}} </h2>
 
-      <input type = "range" min = "0" max = "2" class = "form-control" style = "width: 150px" ng-model = "currentItem.givenAnswer"> {{currentItem.givenAnswer}}
+        <input type = "range" min = "0" max = "2" class = "form-control" style = "width: 150px" ng-model = "currentItem.givenAnswer"> {{currentItem.givenAnswer}}
 
-      <br />
-      <button class = "btn-default" ng-click = "nextItem()"> Întrebarea următoare </button>
+        <br />
+        <button class = "btn btn-default" ng-click = "nextItem()"> Întrebarea următoare </button>
+      </div>
+      <div ng-show = "showResults">
+        <div class = "dot" ng-repeat = "result in results">
+          {{result.givenCount * 100 / result.totalCount / 2}}<sub>%</sub>
+        </div>
+        <br />
+      </div>
     </div>
   </center>
 
