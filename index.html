@@ -28,15 +28,15 @@
 <body ng-app = "app">
   <header>
     <center>
-      <h1> Ce o să te faci când o să fii mare? </h1>
+      <h1> Chestionar <br /> <sub> Orientare profesională :) </sub> </h1>
       <br />
-      <p> Alege cât de mult îți place ocupația pe o scară de la 0 la 2. </p>
+      <p> Alege cât de mult îți place ocupația - de la 0 la 2. </p>
     </center>
   </header>
 
   <center>
-    <div ng-controller = "quizCtrl" id = "container">
-      <div ng-show = "!showResults">
+    <div ng-controller = "quizCtrl" id = "container" class = "fade-in">
+      <div ng-show = "showQuestions">
         <h2> #{{currentItemIndex + 1}} {{currentItem.question}} </h2>
 
         <input type = "range" min = "0" max = "2" class = "form-control" style = "width: 150px" ng-model = "currentItem.givenAnswer"> {{currentItem.givenAnswer}}
@@ -45,10 +45,27 @@
         <button class = "btn btn-default" ng-click = "nextItem()"> Întrebarea următoare </button>
       </div>
       <div ng-show = "showResults">
-        <div class = "dot" ng-repeat = "result in results">
-          {{result.givenCount * 100 / result.totalCount / 2}}<sub>%</sub>
+        <div class = "dot-container" ng-repeat = "result in results" ng-click = "showResultDetails(result)">
+          {{result.name}}
+          <br />
+          <div class = "dot">
+            {{result.givenCount * 100 / result.totalCount / 2}}<sub>%</sub>
+          </div>
         </div>
-        <br />
+      </div>
+
+      <div ng-show = "showResult">
+          <h3> {{shownResult.name}} -  {{shownResult.givenCount * 100 / shownResult.totalCount / 2}}<sub>%</sub> </h3>
+          <br />
+          <table class = "table table-striped">
+            <tr> <td> Meserii </td> <td> {{shownResult.jobs}} </td> </tr>
+            <tr> <td> Caracteristici </td> <td> {{shownResult.chars}} </td> </tr>
+          </table>
+
+          <br />
+          <button class = "btn btn-primary" ng-click = "goBack()">
+            înapoi la rezultate
+          </button>
       </div>
     </div>
   </center>
