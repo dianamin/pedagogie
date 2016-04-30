@@ -2,23 +2,23 @@ app.controller('quizCtrl', function($scope) {
   $scope.items = [
     {
       "question" : "abcd1",
-      "tip" : 2,
-      "given_answer": 1
+      "type" : 2,
+      "givenAnswer": 1
     },
     {
       "question" : "abcd2",
-      "tip" : 2,
-      "given_answer": 1
+      "type" : 2,
+      "givenAnswer": 1
     },
     {
       "question" : "abcd3",
-      "tip" : 2,
-      "given_answer": 1
+      "type" : 2,
+      "givenAnswer": 1
     },
     {
       "question" : "abcd4",
-      "tip" : 2,
-      "given_answer": 1
+      "type" : 2,
+      "givenAnswer": 1
     }
   ];
 
@@ -36,5 +36,11 @@ app.controller('quizCtrl', function($scope) {
     $scope.currentItem = $scope.items[$scope.currentItemIndex];
   }
 
-  $scope.result;
+
+  $scope.results = [0, 0, 0, 0, 0, 0];
+
+  $scope.getResult = function() {
+    for (var i = 0; i < $scope.items.length; i++)
+      $scope.results[$scope.items[i].type] += $scope.intems[i].givenAnswer;
+  }
 });
