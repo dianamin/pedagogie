@@ -19,15 +19,30 @@
   <script src = "js/sortable.js"></script>
 
 	<script src = "js/bootstrap.js"></script>
+
+
+  <script src = "js/quizController.js"></script>
 </head>
 
-<body>
+<body ng-app = "app">
   <header>
     <center>
       <h1> Ce o să te faci când o să fii mare? </h1>
       <h2> - Quiz - </h2>
     </center>
   </header>
+
+  <center>
+    <div ng-controller = "quizCtrl">
+      <h2> Întrebarea #{{currentItemIndex + 1}}: {{currentItem.question}} </h2>
+
+      <input type = "range" min = "0" max = "2" class = "form-control" style = "width: 150px" ng-model = "currentItem.givenAnswer"> {{currentItem.givenAnswer}}
+
+      <br />
+      <button class = "btn-default" ng-click = "nextItem()"> Întrebarea următoare </button>
+    </div>
+  </center>
+
 </body>
 
 
